@@ -12,12 +12,12 @@
 Complete level-up progression data (Levels 1 to 99) for all party members. Click any character below to expand their full table.
 
 <details>
-<summary><strong>Ralph — Level 1–99 Growth Table (101 rows)</strong></summary>
+<summary><strong>Ralph — Ralph — Level 1–99 Stat Growth Table (99 rows)</strong></summary>
 
-| Ralph – tablas de Growth por Level (1 a 99) |  |  |  |  |  |  |  |  |  |  |  |  |
+> Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: Ralph does not use a stat table (his TP increases by +20 per each of 8 story flags, max 160), so that column is blank. Luck is not stored in these tables.
+
+| Level | EXP to Next Level | EXP Addr | HP Max | HP Addr | TP/MP Max (tabla) | TP Addr | Power | Power Addr | Agility | Agility Addr | Intelligence | INT Addr |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: Ralph no usa tabla (su TP sube +20 por cada una de 8 banderas de la historia, Max 160), por eso esa columna queda vacía. La Luck no está en estas tablas. |  |  |  |  |  |  |  |  |  |  |  |  |
-| Level | EXP para subir de este Level | Dir. EXP | HP Max | Dir. HP | TP/MP Max (tabla) | Dir. TP | Power | Dir. Power | Agility | Dir. Agility | Intelligence | Dir. Inteligencia |
 | 1 | 20 | 2A:D6C8 | 20 | 2A:DB6C |  |  | 10 | 2A:E262 | 5 | 2A:DF4A | 6 | 2A:E0D6 |
 | 2 | 60 | 2A:D6CB | 32 | 2A:DB6E |  |  | 11 | 2A:E263 | 6 | 2A:DF4B | 7 | 2A:E0D7 |
 | 3 | 140 | 2A:D6CE | 44 | 2A:DB70 |  |  | 12 | 2A:E264 | 7 | 2A:DF4C | 7 | 2A:E0D8 |
@@ -121,12 +121,12 @@ Complete level-up progression data (Levels 1 to 99) for all party members. Click
 </details>
 
 <details>
-<summary><strong>Theo — Level 1–99 Growth Table (101 rows)</strong></summary>
+<summary><strong>Theo — Theo — Level 1–99 Stat Growth Table (99 rows)</strong></summary>
 
-| Theo – tablas de Growth por Level (1 a 99) |  |  |  |  |  |  |  |  |  |  |  |  |
+> Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: This shared table applies to both Theo and Lumies. Luck is not stored in these tables.
+
+| Level | EXP to Next Level | EXP Addr | HP Max | HP Addr | TP/MP Max (tabla) | TP Addr | Power | Power Addr | Agility | Agility Addr | Intelligence | INT Addr |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: esta tabla se aplica a Theo y Lumies. La Luck no está en estas tablas. |  |  |  |  |  |  |  |  |  |  |  |  |
-| Level | EXP para subir de este Level | Dir. EXP | HP Max | Dir. HP | TP/MP Max (tabla) | Dir. TP | Power | Dir. Power | Agility | Dir. Agility | Intelligence | Dir. Inteligencia |
 | 1 | 11 | 2A:D7F1 | 20 | 2A:DC32 | 20 | 2A:DE84 | 8 | 2A:E2C5 | 7 | 2A:DFAD | 10 | 2A:E139 |
 | 2 | 41 | 2A:D7F4 | 28 | 2A:DC34 | 25 | 2A:DE86 | 9 | 2A:E2C6 | 8 | 2A:DFAE | 11 | 2A:E13A |
 | 3 | 112 | 2A:D7F7 | 36 | 2A:DC36 | 30 | 2A:DE88 | 10 | 2A:E2C7 | 9 | 2A:DFAF | 12 | 2A:E13B |
@@ -230,12 +230,12 @@ Complete level-up progression data (Levels 1 to 99) for all party members. Click
 </details>
 
 <details>
-<summary><strong>Liz — Level 1–99 Growth Table (101 rows)</strong></summary>
+<summary><strong>Liz — Liz — Level 1–99 Stat Growth Table (99 rows)</strong></summary>
 
-| Liz – tablas de Growth por Level (1 a 99) |  |  |  |  |  |  |  |  |  |  |  |  |
+> Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: Liz does not use a stat table (her TP increases by +20 per each of 8 story flags, max 160), so that column is blank. Luck is not stored in these tables.
+
+| Level | EXP to Next Level | EXP Addr | HP Max | HP Addr | TP/MP Max (tabla) | TP Addr | Power | Power Addr | Agility | Agility Addr | Intelligence | INT Addr |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: Liz no usa tabla (su TP sube +20 por cada una de 8 banderas de la historia, Max 160), por eso esa columna queda vacía. La Luck no está en estas tablas. |  |  |  |  |  |  |  |  |  |  |  |  |
-| Level | EXP para subir de este Level | Dir. EXP | HP Max | Dir. HP | TP/MP Max (tabla) | Dir. TP | Power | Dir. Power | Agility | Dir. Agility | Intelligence | Dir. Inteligencia |
 | 1 | 14 | 2A:D91A | 20 | 2A:DCF8 |  |  | 6 | 2A:E328 | 10 | 2A:E010 | 7 | 2A:E19C |
 | 2 | 35 | 2A:D91D | 30 | 2A:DCFA |  |  | 7 | 2A:E329 | 11 | 2A:E011 | 8 | 2A:E19D |
 | 3 | 92 | 2A:D920 | 40 | 2A:DCFC |  |  | 8 | 2A:E32A | 12 | 2A:E012 | 8 | 2A:E19E |
@@ -339,12 +339,12 @@ Complete level-up progression data (Levels 1 to 99) for all party members. Click
 </details>
 
 <details>
-<summary><strong>Lumies — Level 1–99 Growth Table (101 rows)</strong></summary>
+<summary><strong>Lumies — Lumies — Level 1–99 Stat Growth Table (99 rows)</strong></summary>
 
-| Lumies – tablas de Growth por Level (1 a 99) |  |  |  |  |  |  |  |  |  |  |  |  |
+> Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: This shared table applies to both Theo and Lumies. Luck is not stored in these tables.
+
+| Level | EXP to Next Level | EXP Addr | HP Max | HP Addr | TP/MP Max (tabla) | TP Addr | Power | Power Addr | Agility | Agility Addr | Intelligence | INT Addr |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: esta tabla se aplica a Theo y Lumies. La Luck no está en estas tablas. |  |  |  |  |  |  |  |  |  |  |  |  |
-| Level | EXP para subir de este Level | Dir. EXP | HP Max | Dir. HP | TP/MP Max (tabla) | Dir. TP | Power | Dir. Power | Agility | Dir. Agility | Intelligence | Dir. Inteligencia |
 | 1 | 10 | 2A:DA43 | 20 | 2A:DDBE | 20 | 2A:DE84 | 4 | 2A:E38B | 8 | 2A:E073 | 10 | 2A:E1FF |
 | 2 | 20 | 2A:DA46 | 27 | 2A:DDC0 | 25 | 2A:DE86 | 5 | 2A:E38C | 9 | 2A:E074 | 11 | 2A:E200 |
 | 3 | 80 | 2A:DA49 | 34 | 2A:DDC2 | 30 | 2A:DE88 | 6 | 2A:E38D | 10 | 2A:E075 | 12 | 2A:E201 |
@@ -448,23 +448,24 @@ Complete level-up progression data (Levels 1 to 99) for all party members. Click
 </details>
 
 <details>
-<summary><strong>Fuentes — Level 1–99 Growth Table (14 rows)</strong></summary>
+<summary><strong>Sources — ROM Data Sources & Pointer Map (6 rows)</strong></summary>
 
-| De dónde salen los datos |  |  |  |  |  |  |  |
+> ROM: Dual Orb – Seirei Tama Densetsu (Japan), LoROM 2 MB Headerless. File Offset = bank × 0x8000 + (address − 0x8000).
+
+| Table | Table Pointer (ROM Address) | Reading Routine | Base SNES Address | File Offset (Base) | Size per Level | Stride Between Characters | Data Address Formula (L = Level, P = 0 Ralph, 1 Theo, 2 Liz, 3 Lumies) |
 | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| ROM: Dual Orb – Seirei Tama Densetsu (Japan), LoROM 2 MB sin cabecera. Offset en el archivo = banco×0x8000 + (dirección − 0x8000). |  |  |  |  |  |  |  |
-| Table | Puntero a la tabla (dónde está su dirección) | Código que lo lee | Dirección base | Offset en el archivo (base) | Tamaño por Level | Separación entre personajes | Dirección de un dato (L = Level, P = 0 Ralph, 1 Theo, 2 Liz, 3 Lumies) |
-| EXP para subir de Level | 2A:C700 | 01:8D5D | 2A:D6C8 | 0x1556C8 | 3 bytes (24 bits) | 297 bytes (99 niveles) | base + P×297 + (L−1)×3 |
-| HP Max | 2A:C702 | 01:8C81 | 2A:DB6C | 0x155B6C | 2 bytes (16 bits) | 198 bytes (99 niveles) | base + P×198 + (L−1)×2 |
-| TP/MP Max (Theo y Lumies) | 2A:C70A | 01:8CAA | 2A:DE84 | 0x155E84 | 2 bytes (16 bits) | Sin separación: ambos usan la misma tabla | base + (L−1)×2 |
+| EXP to Next Level | 2A:C700 | 01:8D5D | 2A:D6C8 | 0x1556C8 | 3 bytes (24-bit) | 297 bytes (99 levels) | base + P×297 + (L−1)×3 |
+| HP Max | 2A:C702 | 01:8C81 | 2A:DB6C | 0x155B6C | 2 bytes (16-bit) | 198 bytes (99 levels) | base + P×198 + (L−1)×2 |
+| TP/MP Max (Theo y Lumies) | 2A:C70A | 01:8CAA | 2A:DE84 | 0x155E84 | 2 bytes (16-bit) | Shared table (no stride: both use the same table) | base + (L−1)×2 |
 | Power | 2A:C708 | 01:8D87 | 2A:E262 | 0x156262 | 1 byte | 99 bytes | base + P×99 + (L−1) |
 | Agility | 2A:C704 | 01:8DA4 | 2A:DF4A | 0x155F4A | 1 byte | 99 bytes | base + P×99 + (L−1) |
 | Intelligence | 2A:C706 | 01:8DC1 | 2A:E0D6 | 0x1560D6 | 1 byte | 99 bytes | base + P×99 + (L−1) |
-| Notes |  |  |  |  |  |  |  |
-| Comprobación con tu captura: Ralph Level 43 → la tabla da HP 524 (+12 respecto al Level 42) y Agility 44 (+1), igual que la pantalla. El Power de la captura es 62 y la tabla da 60: la diferencia de +2 coincide con un Mystic Walnut, pero es una suposición mía. |  |  |  |  |  |  |  |
-| Solo Ralph se contrastó con el juego; el orden de los otros tres (Theo, Liz, Lumies) sale de cómo el código elige el bloque de cada Character. |  |  |  |  |  |  |  |
-| El Level 99 de la tabla de EXP vale 9,999,999 en los cuatro personajes: parece un marcador de Level Max, no una exigencia real. El contador de EXP también se limita a 9,999,999. |  |  |  |  |  |  |  |
-| TP/MP de Ralph y Liz: no hay tabla; el código suma +20 por cada una de 8 banderas de la historia (Max 160). |  |  |  |  |  |  |  |
-| La Luck no está en estas tablas: empieza en 10 y sube +0, +2 o +4 al azar en cada Level (rutina en 20:92A0). |  |  |  |  |  |  |  |
+
+#### Technical Notes
+- In-game verification: At Level 43, Ralph’s table values give 524 HP (+12 over Lv. 42) and 44 Agility (+1), matching the status screen. Power shown in-game was 62 vs. 60 in the table (the +2 difference likely reflects a Mystic Walnut boost).
+- Only Ralph was cross-checked directly against a live screenshot; the block ordering of the other three heroes (Theo, Liz, Lumies) comes directly from how the engine indexes each character block.
+- Level 99 in the EXP table is set to 9,999,999 for all four characters (acting as a max-level sentinel rather than a real requirement). The EXP counter itself is also capped at 9,999,999.
+- Ralph & Liz TP/MP: No stat table is used; the engine adds +20 for each of 8 story flags (Max 160).
+- Luck is not stored in these tables: every hero starts at 10 and rolls +0, +2, or +4 randomly on each level up (routine at $20:92A0).
 
 </details>

@@ -1,6 +1,6 @@
-Theo – tablas de Growth por Level (1 a 99),,,,,,,,,,,,
-"Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: esta tabla se aplica a Theo y Lumies. La Luck no está en estas tablas.",,,,,,,,,,,,
-Level,EXP para subir de este Level,Dir. EXP,HP Max,Dir. HP,TP/MP Max (tabla),Dir. TP,Power,Dir. Power,Agility,Dir. Agility,Intelligence,Dir. Inteligencia
+Theo — Level 1–99 Stat Growth Table,,,,,,,,,,,,
+"Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: This shared table applies to both Theo and Lumies. Luck is not stored in these tables.",,,,,,,,,,,,
+Level,EXP to Next Level,EXP Addr,HP Max,HP Addr,TP/MP Max (tabla),TP Addr,Power,Power Addr,Agility,Agility Addr,Intelligence,INT Addr
 1,11,2A:D7F1,20,2A:DC32,20,2A:DE84,8,2A:E2C5,7,2A:DFAD,10,2A:E139
 2,41,2A:D7F4,28,2A:DC34,25,2A:DE86,9,2A:E2C6,8,2A:DFAE,11,2A:E13A
 3,112,2A:D7F7,36,2A:DC36,30,2A:DE88,10,2A:E2C7,9,2A:DFAF,12,2A:E13B

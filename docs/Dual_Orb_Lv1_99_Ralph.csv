@@ -1,6 +1,6 @@
-Ralph – tablas de Growth por Level (1 a 99),,,,,,,,,,,,
-"Dirección = banco:dirección de la primera byte de cada dato en la ROM (LoROM, sin cabecera). TP/MP: Ralph no usa tabla (su TP sube +20 por cada una de 8 banderas de la historia, Max 160), por eso esa columna queda vacía. La Luck no está en estas tablas.",,,,,,,,,,,,
-Level,EXP para subir de este Level,Dir. EXP,HP Max,Dir. HP,TP/MP Max (tabla),Dir. TP,Power,Dir. Power,Agility,Dir. Agility,Intelligence,Dir. Inteligencia
+Ralph — Level 1–99 Stat Growth Table,,,,,,,,,,,,
+"Address = bank:address of the first byte of each stat in the ROM (LoROM, headerless). TP/MP: Ralph does not use a stat table (his TP increases by +20 per each of 8 story flags, max 160), so that column is blank. Luck is not stored in these tables.",,,,,,,,,,,,
+Level,EXP to Next Level,EXP Addr,HP Max,HP Addr,TP/MP Max (tabla),TP Addr,Power,Power Addr,Agility,Agility Addr,Intelligence,INT Addr
 1,20,2A:D6C8,20,2A:DB6C,,,10,2A:E262,5,2A:DF4A,6,2A:E0D6
 2,60,2A:D6CB,32,2A:DB6E,,,11,2A:E263,6,2A:DF4B,7,2A:E0D7
 3,140,2A:D6CE,44,2A:DB70,,,12,2A:E264,7,2A:DF4C,7,2A:E0D8
