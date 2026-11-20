@@ -85,7 +85,7 @@ In the original 1993 release, the party walks at 1 pixel/frame with no run mecha
 > **Story Cutscene Warning (Toggle Patch):**
 > **Turn off 2x walk before entering the Sealed Shrine before enter the undergroud world or else the game Will hang in the Resisty Home escape.**
 >
-> *Why this happens:* During the Resisty Home / Sealed Shrine escape sequence leading into the Underground World, **Teresa** (the caterpillar resistance leader) escorts the party on fixed 1x rails. At 2x speed, Ralph overtakes Teresa ahead of schedule and her waypoint trigger never fires, causing a softlock. With the Toggle patch, press **R + any D-Pad direction** to switch back to 1x before entering. With **`Dual_Orb_Walk_Speed_Hold_R.ips`**, this never occurs because R is naturally released during cutscenes.
+> *Why this happens:* During the Resisty Home / Sealed Shrine escape sequence leading into the Underground World, **Teresa** leads the party in a single-file caterpillar formation toward the cutscene trigger point. Because she moves on fixed 1x rails, if 2x walk is active, Ralph moves ahead and overtakes Teresa, so the trigger point never fires and the game softlocks. With the Toggle patch, press **R + any D-Pad direction** to switch back to 1x before entering. With **`Dual_Orb_Walk_Speed_Hold_R.ips`**, this never occurs because R is naturally released during cutscenes.
 
 <details>
 <summary><strong>View Asar Source Code — Hold R to Run (<code>Dual_Orb_Walk_Speed_Hold_R.asm</code>)</strong></summary>
@@ -367,14 +367,14 @@ In vanilla *Dual Orb*, opening a chest when you already hold 99 of that item tri
 
 ## 7. Repel Duration Suite (Demete, Sun Shard & Moon Shard)
 
-The vanilla **Demete** spell, **Sun Shard** (repel), and **Moon Shard** (attract) each last only 8 step ticks (`$1327 = 8`) via three independent routines in Bank `$21`.
+The **Demete** spell and **Sun Shard** item protect the party from random battles, while **Moon Shard** increases random battle encounter chance. In vanilla 1993, all three effects share a short internal duration timer (`$1327 = 8`) set across three independent routines in Bank `$21`. These patches extend how long the effect lasts (**2x** = `16` or **4x** = `32`).
 
 | Patch File | Behavior | ROM Offsets |
 | :--- | :--- | :--- |
-| [`Dual_Orb_Demete_And_SunShard_32_Steps_MoonShard_Vanilla.ips`](patches/Dual_Orb_Demete_And_SunShard_32_Steps_MoonShard_Vanilla.ips) | **Quadruple Repel (32 Steps).** Demete & Sun Shard last 32 steps; Moon Shard stays vanilla (8). | `0x10AFFB`, `0x10BE47` |
-| [`Dual_Orb_Demete_And_SunShard_16_Steps_MoonShard_Vanilla.ips`](patches/Dual_Orb_Demete_And_SunShard_16_Steps_MoonShard_Vanilla.ips) | **Double Repel (16 Steps).** Demete & Sun Shard last 16 steps; Moon Shard stays vanilla (8). | `0x10AFFB`, `0x10BE47` |
-| [`Dual_Orb_MoonShard_Item_16_Steps_Grinding.ips`](patches/Dual_Orb_MoonShard_Item_16_Steps_Grinding.ips) | **Moon Shard 16 Steps (Grinding).** Doubles Moon Shard enemy-attract duration to 16 steps. | `0x10BE61` |
-| [`Dual_Orb_Demete_SunShard_MoonShard_Restore_Vanilla_8.ips`](patches/Dual_Orb_Demete_SunShard_MoonShard_Restore_Vanilla_8.ips) | **Restore Vanilla (8 Steps).** Reverts Demete, Sun Shard, and Moon Shard back to 8 steps. | `0x10AFFB`, `0x10BE47`, `0x10BE61` |
+| [`Dual_Orb_Demete_And_SunShard_32_Steps_MoonShard_Vanilla.ips`](patches/Dual_Orb_Demete_And_SunShard_32_Steps_MoonShard_Vanilla.ips) | **4x Duration (Timer = 32).** Quadruples Demete & Sun Shard battle-protection duration; Moon Shard stays vanilla (`8`). | `0x10AFFB`, `0x10BE47` |
+| [`Dual_Orb_Demete_And_SunShard_16_Steps_MoonShard_Vanilla.ips`](patches/Dual_Orb_Demete_And_SunShard_16_Steps_MoonShard_Vanilla.ips) | **2x Duration (Timer = 16).** Doubles Demete & Sun Shard battle-protection duration; Moon Shard stays vanilla (`8`). | `0x10AFFB`, `0x10BE47` |
+| [`Dual_Orb_MoonShard_Item_16_Steps_Grinding.ips`](patches/Dual_Orb_MoonShard_Item_16_Steps_Grinding.ips) | **Moon Shard 2x Duration (Timer = 16).** Doubles how long Moon Shard boosts random battle rate for EXP grinding. | `0x10BE61` |
+| [`Dual_Orb_Demete_SunShard_MoonShard_Restore_Vanilla_8.ips`](patches/Dual_Orb_Demete_SunShard_MoonShard_Restore_Vanilla_8.ips) | **Restore Vanilla (Timer = 8).** Reverts Demete, Sun Shard, and Moon Shard back to their original duration. | `0x10AFFB`, `0x10BE47`, `0x10BE61` |
 
 ---
 
