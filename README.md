@@ -67,7 +67,8 @@ Drop your emulator screenshots or short GIFs into an `assets/` folder, then remo
 6. [Treasure Chests Overflow Suite](#6-treasure-chests-overflow-suite)
 7. [Repel Duration Suite (Demete, Sun Shard & Moon Shard)](#7-repel-duration-suite-demete-sun-shard--moon-shard)
 8. [Critical Hits Suite](#8-critical-hits-suite)
-9. [Repository Structure & How to Apply](#repository-structure)
+9. [Inn Pricing Suite](#9-inn-pricing-suite)
+10. [Repository Structure & How to Apply](#repository-structure)
 
 ---
 
@@ -391,13 +392,28 @@ Vanilla physical critical hits trigger at a `1/128` (`~0.78%`) rate (`AND #$007F
 
 ---
 
+## 9. Inn Pricing Suite
+
+In vanilla 1993, Inns charge `Base Price × Number of Living Characters` (4x the advertised price for a full party of 4). Choose and apply **only one** variant:
+
+| Patch File | Behavior | ROM Offset | Bytes |
+| :--- | :--- | :--- | :--- |
+| [`Dual_Orb_Inn_FlatRate_1x.ips`](patches/Dual_Orb_Inn_FlatRate_1x.ips) | **Flat Rate (1x) [Recommended].** Single base fee regardless of party size. | `0x080EC4` | `A9 01 EA` |
+| [`Dual_Orb_Inn_Rate_2x.ips`](patches/Dual_Orb_Inn_Rate_2x.ips) | **Fixed 2x Rate.** Charges for 2 members (50% discount for a full party). | `0x080EC4` | `A9 02 EA` |
+| [`Dual_Orb_Inn_Rate_3x.ips`](patches/Dual_Orb_Inn_Rate_3x.ips) | **Fixed 3x Rate.** Slight discount for full parties. | `0x080EC4` | `A9 03 EA` |
+| [`Dual_Orb_Inn_Free_0G.ips`](patches/Dual_Orb_Inn_Free_0G.ips) | **Free Inn (0G).** Resting at any inn costs 0 Gold. | `0x080EC4` | `A9 00 EA` |
+| [`Dual_Orb_Inn_Original_Vanilla_4x.ips`](patches/Dual_Orb_Inn_Original_Vanilla_4x.ips) | **Restore Vanilla (4x).** Reverts to original 1993 per-living-member multiplier. | `0x080EC4` | `AD 00 00` |
+
+---
+
 ## Repository Structure
 
 ```text
 dual-orb-qol-patches/
 ├── README.md        # Full English documentation & quick-pick guide
-├── patches/         # 28 ready-to-apply modular .ips patches (100% English filenames)
-└── source_asm/      # 28 matching Asar 65816 .asm source files (1-to-1 with patches/)
+├── patches/         # 33 ready-to-apply modular .ips patches (100% English filenames)
+├── source_asm/      # 33 matching Asar 65816 .asm source files (1-to-1 with patches/)
+└── docs/            # Complete Level 1–99 character growth tables (.md, .csv, .xlsx)
 ```
 
 ---
@@ -420,6 +436,32 @@ dual-orb-qol-patches/
 4. Apply each `.ips` file using **[Floating IPS (Flips)](https://github.com/Alcaro/Flips)** or **Lunar IPS (LIPS)**.
    - Every patch targets an independent routine, so you can stack multiple `.ips` files in any order.
 5. Play on **Mesen**, **Snes9x**, **bsnes**, or real SNES hardware via flashcart.
+
+---
+
+## Bonus: Classic Vanilla 1993 Tip
+
+<details>
+<summary><strong>0-MP Field Magic Glitch (Menu Error-Beep Trick — Preserved Intact)</strong></summary>
+
+None of these patches alter or break the classic 1993 field-magic MP trick:
+
+1. **Activate:** Open the menu outside of battle and attempt to cast a healing, revive, or status-cure spell on a party member who is already at full HP / healthy. The game plays an **error beep**. Press **B** to exit the menu.
+2. **Effect:** Field utility spells cast by Lumies or Theo — such as **Demete** (repel), **Telepia** (escape dungeon), or **Telepiam** (fast travel) — consume **0 MP**.
+3. **Maintenance:** Stays active while exploring the map. Using Lumies' staves as items in battle does **not** cancel the trick.
+4. **Cancellation:** Resets automatically if you legitimately cast a spell that consumes MP in the menu or in battle.
+
+</details>
+
+---
+
+## Bonus Reference: Complete Level 1–99 Growth Tables
+
+Full level-by-level character stat progression (Levels 1 to 99) is included in the [`docs/`](docs/) folder:
+
+- [`docs/Dual_Orb_Level_1_to_99_Stats.md`](docs/Dual_Orb_Level_1_to_99_Stats.md) — Interactive collapsible GitHub tables for all 4 heroes
+- [`docs/Dual_Orb_Level_1_to_99_Stats.xlsx`](docs/Dual_Orb_Level_1_to_99_Stats.xlsx) — Full 4-tab English Excel workbook
+- Individual searchable `.csv` files inside [`docs/`](docs/)
 
 ---
 

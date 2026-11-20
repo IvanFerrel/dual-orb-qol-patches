@@ -98,15 +98,17 @@ Rom Offset: 0x824A3  |  SNES Bank: $10:A4A3
 -------------------------------------------------------------------------------
 Demete: 0x10AFFB ($21:AFFB) | Sun Shard: 0x10BE47 ($21:BE47) | Moon Shard: 0x10BE61 ($21:BE61)
 
-* Modular Options:
+* Modular Options (Vanilla internal duration timer = 8):
   - Dual_Orb_Demete_And_SunShard_32_Steps_MoonShard_Vanilla.ips (RECOMMENDED):
-    Quadruples Demete & Sun Shard to 32 steps (0x20). Moon Shard stays at 8 steps.
+    Quadruples (4x, timer = 32 / 0x20) Demete & Sun Shard random-battle protection.
+    Moon Shard stays at vanilla duration (8).
   - Dual_Orb_Demete_And_SunShard_16_Steps_MoonShard_Vanilla.ips:
-    Doubles Demete & Sun Shard to 16 steps (0x10). Moon Shard stays at 8 steps.
+    Doubles (2x, timer = 16 / 0x10) Demete & Sun Shard random-battle protection.
+    Moon Shard stays at vanilla duration (8).
   - Dual_Orb_MoonShard_Item_16_Steps_Grinding.ips:
-    Doubles Moon Shard enemy-attract duration to 16 steps (0x10).
+    Doubles (2x, timer = 16 / 0x10) Moon Shard encounter-boost duration for grinding.
   - Dual_Orb_Demete_SunShard_MoonShard_Restore_Vanilla_8.ips:
-    Restores all three routines to the original 8-step duration.
+    Restores all three routines to their original vanilla duration (8).
 
 -------------------------------------------------------------------------------
 7. EXPANDED ITEM SHOPS SUITE (TOPAZ DUST & WORLD 2 ITEMS)
@@ -137,6 +139,18 @@ Rom Offsets: 0x1040C0 ($20:C0C0) & 0x1040C2 ($20:C0C2)
   - Dual_Orb_Critical_Hits_Restore_Vanilla_1_128.ips: Restores vanilla 1/128 rate.
 
 -------------------------------------------------------------------------------
+9. INN PRICING SUITE (PRICING ONLY — ZERO SIDE EFFECTS)
+-------------------------------------------------------------------------------
+Rom Offset: 0x080EC4  |  SNES Bank: $10:8EC4 (Original: AD 00 00 / LDA $0000)
+
+* Modular Options (choose only one):
+  - Dual_Orb_Inn_FlatRate_1x.ips (RECOMMENDED): Flat 1x base fee regardless of party size.
+  - Dual_Orb_Inn_Rate_2x.ips: Fixed 2x rate (50% discount for full 4-hero party).
+  - Dual_Orb_Inn_Rate_3x.ips: Fixed 3x rate (25% discount for full party).
+  - Dual_Orb_Inn_Free_0G.ips: Free Inn (0 Gold).
+  - Dual_Orb_Inn_Original_Vanilla_4x.ips: Restores original 1993 4x per-member multiplier.
+
+-------------------------------------------------------------------------------
 [HOW TO APPLY]
 1. Obtain a clean headerless ROM of Dual Orb (J) (LoROM, 2 MB).
 2. (Optional) Apply minhnhattonthat's English translation patch first:
@@ -144,4 +158,10 @@ Rom Offsets: 0x1040C0 ($20:C0C0) & 0x1040C2 ($20:C0C2)
    (Note: The other English translation patch has NOT been tested with this suite.)
 3. Use Lunar IPS (LIPS) or Floating IPS (Flips) to apply any desired .ips file(s).
    Because each patch targets a distinct ROM routine, they can be stacked in any order.
+-------------------------------------------------------------------------------
+[BONUS: CLASSIC VANILLA 1993 0-MP FIELD MAGIC TRICK (PRESERVED INTACT)]
+- Activate: Outside battle, try casting a heal/revive/cure spell on a hero who
+  is already at full HP/healthy (error beep plays), then press B to exit.
+- Effect: Field spells (Demete, Telepia, Telepiam) consume 0 MP while active.
+- Cancels automatically when you cast a spell that legitimately consumes MP.
 ===============================================================================
