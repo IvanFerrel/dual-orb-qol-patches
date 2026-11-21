@@ -5,9 +5,10 @@
 ; CONTROLS: Press R + any D-Pad direction to toggle ON (2x),
 ;           Press R + any D-Pad direction to toggle OFF (1x).
 ;
-; WARNING: Turn off 2x walk before entering the Sealed Shrine before enter the
-; undergroud world or else the game Will hang in the Resisty Home escape
-; (at 2x speed, Ralph overtakes Teresa and her escort trigger never processes).
+; WARNING: Keep 2x walk OFF during the Resisty Home / Sealed Shrine escape
+; leading into the Underground World (at 2x speed, Ralph overtakes Teresa and
+; her escort trigger never processes). Note: R input is still read during the
+; cutscene, so you can toggle back to 1x on the fly if you forgot beforehand.
 ; ==============================================================================
 
 lorom

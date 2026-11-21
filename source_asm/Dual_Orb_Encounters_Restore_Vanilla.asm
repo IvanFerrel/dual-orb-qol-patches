@@ -1,5 +1,6 @@
 ; Dual Orb - Seirei Tama Densetsu (SNES, LoROM, 2 MB, Headerless)
-; Restore: Reverts random encounter step thresholds back to vanilla 1993.
+; Restore: Reverts static 20/30/40-step random encounter patches back to vanilla 1993.
+; (Safe for all ROMs; to revert Toggle L Button, use Dual_Orb_Encounters_Toggle_L_Restore_Vanilla.asm.)
 
 lorom
 

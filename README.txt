@@ -1,11 +1,23 @@
 ===============================================================================
 Dual Orb: Seirei Tama Densetsu (Super Famicom / SNES - 1993)
 Modular Quality-of-Life (QoL) Patch Suite v1.0
-Developed for Headerless LoROM (2 MB / 2,097,152 bytes)
-Tested & Verified On: minhnhattonthat's English Translation
-https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en
-(Original Japanese ROM is likely compatible but untested; the other English
-fan translation is untested and not guaranteed.)
+Target: Headerless / No-Intro LoROM (all patches sit below 0x10C000)
+(If your Japanese dump is 1,573,376 bytes, remove the 512-byte header first.)
+
+Verified Base ROM (No-Intro):
+  Dual Orb - Seirei Tama Densetsu (Japan).sfc (1,572,864 bytes / 1.5 MB)
+  CRC32: 9D7BD920  |  MD5: ba4b6f2c3195df69497f1f32fe697746
+  SHA-1: 25fe4c1af89a7d09ffefab7d568d15865f153467
+
+Verified English Translation #1:
+  minhnhattonthat v1.5 (https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en/releases)
+  Patched ROM: 2,097,152 bytes (2 MB), CRC32: A1B429E9
+  Patch SHA-1: 9018d5c016ad27b01632dbc5bc6a6c6315fa6873
+
+Verified English Translation #2:
+  gametranslate.us DualOrb_EN_v1.0.2.bps (https://gametranslate.us/)
+  Patched ROM: 2,097,152 bytes (2 MB), CRC32: 9EA0B01A
+  MD5: 644a430a08df0850f5bd268627cc341c  |  SHA-1: 684c636f92f7b979c0f69cd8d21ba750f9e1c9d1
 ===============================================================================
 
 [PHILOSOPHY & DESIGN]
@@ -27,6 +39,9 @@ Rom Offset: 0x1082EA  |  SNES Bank: $21:82EA  |  RAM Step Counter: $7E:1CAD
     Adds an in-game real-time switch using the L Button!
     Press L anytime to alternate between 20-step balanced grace mode and Vanilla.
     Audible confirmation plays on the next step: Sound $12 = Grace, Sound $17 = Vanilla.
+  - Dual_Orb_Encounters_Toggle_L_NoEncounters_Vs_Vanilla.ips:
+    Press L anytime to toggle 0% Random Encounters (ON) vs Vanilla 1993 (OFF, default).
+    Bosses and scripted story battles are unaffected. SFX: $12 = No Encounters, $17 = Vanilla.
   - Dual_Orb_Encounters_20StepGrace_Balanced.ips:
     20 safe steps with halved escalation thresholds.
   - Dual_Orb_Encounters_30StepGrace_Modern.ips:
@@ -34,7 +49,10 @@ Rom Offset: 0x1082EA  |  SNES Bank: $21:82EA  |  RAM Step Counter: $7E:1CAD
   - Dual_Orb_Encounters_40StepGrace_Relaxed.ips:
     40 safe steps for relaxed dungeon exploration and story pacing.
   - Dual_Orb_Encounters_Restore_Vanilla.ips:
-    Restores the exact original 35 bytes from I'MAX (1993).
+    Restores the exact original 35 bytes at $21:82EA (reverts 20/30/40-step static patches).
+  - Dual_Orb_Encounters_Toggle_L_Restore_Vanilla.ips:
+    Completely reverts BOTH L-button encounter toggle patches ($00:80E1, $21:82EA,
+    and clears $01:FB00 / $01:FC00 back to $FF padding).
 
 -------------------------------------------------------------------------------
 2. BATTLE EXPERIENCE (EXP) DISTRIBUTION SUITE
@@ -57,15 +75,17 @@ Rom Offsets: 0x84B46 & 0x84C14  |  SNES Bank: $10:CB46 & $10:CC14
 * Modular Options:
   - Dual_Orb_Walk_Speed_Hold_R.ips (RECOMMENDED):
     Hold R button on controller 1 to Dash at 2x speed. Release R to return to 1x.
-    Zero softlock risk in automatic cutscenes.
+    Simply do not hold R during Teresa's Resisty Home / Sealed Shrine escape cutscene
+    (holding R will still dash at 2x if kept pressed).
   - Dual_Orb_Walk_Speed_Toggle_R_Latch.ips:
     Press R + any D-Pad direction to toggle ON (2x) / OFF (1x). Features latch guard.
     * WARNING:
-      Turn off 2x walk before entering the Sealed Shrine before enter the undergroud
-      world or else the game Will hang in the Resisty Home escape (at 2x speed,
-      Ralph overtakes Teresa and her escort trigger never processes).
+      Keep 2x walk OFF during the Resisty Home / Sealed Shrine escape leading into the
+      Underground World (at 2x speed, Ralph overtakes Teresa and her escort trigger never
+      processes). Note: R is still read during the cutscene, so you can toggle ON/OFF live.
   - Dual_Orb_Walk_Speed_Restore_Vanilla.ips:
-    Restores the original 1993 1x walking speed routines.
+    Cleanly reverts BOTH Hold R and Toggle R + D-Pad patches back to original 1993 1x
+    walking speed ($10:CB46, $10:CC14) and clears $01:FD00 (77 bytes) back to $FF.
 
 -------------------------------------------------------------------------------
 4. LEVEL-UP LUCK STAT GROWTH SUITE (4 SEPARATE PATCHES)

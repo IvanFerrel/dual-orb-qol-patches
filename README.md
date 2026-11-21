@@ -4,7 +4,7 @@
 ### Modular Quality-of-Life (QoL) & Bugfix Patch Suite
 
 [![Platform](https://img.shields.io/badge/Platform-SNES%20%2F%20Super%20Famicom-6366f1?style=for-the-badge)](https://github.com/IvanFerrel/dual-orb-qol-patches)
-[![ROM](https://img.shields.io/badge/ROM-LoROM%202MB%20Headerless-10b981?style=for-the-badge)](#target-rom-information)
+[![ROM](https://img.shields.io/badge/ROM-LoROM%20Headerless%20(1.5MB%20%2F%202MB)-10b981?style=for-the-badge)](#target-rom-information)
 [![Format](https://img.shields.io/badge/Patches-Modular%20IPS-f59e0b?style=for-the-badge)](#how-to-apply)
 [![Source](https://img.shields.io/badge/Source-Asar%2065816%20ASM-8b5cf6?style=for-the-badge)](#repository-structure)
 
@@ -18,11 +18,12 @@ A modular collection of reverse-engineered **IPS patches** and **Asar 65816 asse
 
 > [!IMPORTANT]
 > **Target ROM & Translation Compatibility:**
-> All patches target a clean **2 MB (2,097,152 bytes) Headerless / No-Intro LoROM** image (`.sfc` / `.smc` — do **not** apply to 512-byte headered dumps).
+> All patches target a **Headerless / No-Intro LoROM** image (`.sfc` / `.smc` — if your Japanese dump is `1,573,376` bytes, it has a 512-byte copier header and must be unheadered first). Every patch modifies offsets below `0x10C000`, so the suite works cleanly on both the original **1.5 MB** Japanese ROM and the **2 MB** expanded English translations.
 >
-> **Tested & Verified On:** [minhnhattonthat's English translation](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en) *(there are two English fan translations for Dual Orb — this is the one these patches were built and tested on)*.
->
-> **Untested:** The original Japanese ROM *(likely compatible, since these patches modify vanilla engine code and unused `$FF` padding rather than translated text)* and the other English fan translation *(compatibility not guaranteed)*.
+> **Tested & Verified On All 3 Versions:**
+> - **[minhnhattonthat's English translation v1.5](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en/releases)** *(2 MB / `2,097,152` bytes expanded ROM, CRC32 `A1B429E9`)*.
+> - **[gametranslate.us English translation (`DualOrb_EN_v1.0.2.bps`)](https://gametranslate.us/)** *(2 MB / `2,097,152` bytes expanded ROM, CRC32 `9EA0B01A`)*.
+> - **Original Japanese ROM (No-Intro)** *(1.5 MB / `1,572,864` bytes, CRC32 `9D7BD920`)*.
 
 ---
 
@@ -32,7 +33,7 @@ Just want to play the game with smooth modern pacing? Apply these **6 independen
 
 | Category | Recommended Patch | What It Changes |
 | :--- | :--- | :--- |
-| **Movement** | [`Dual_Orb_Walk_Speed_Hold_R.ips`](patches/Dual_Orb_Walk_Speed_Hold_R.ips) | Hold **R** to dash at 2x speed (zero cutscene softlock risk) |
+| **Movement** | [`Dual_Orb_Walk_Speed_Hold_R.ips`](patches/Dual_Orb_Walk_Speed_Hold_R.ips) | Hold **R** to dash at 2x speed (release R for 1x during cutscenes) |
 | **Encounters** | [`Dual_Orb_Encounters_Toggle_L_Button.ips`](patches/Dual_Orb_Encounters_Toggle_L_Button.ips) | Press **L** anytime to toggle 20-step grace period vs. Vanilla |
 | **Item Shops** | [`Dual_Orb_Item_Shops_Topaz_Dust_And_World2_Items.ips`](patches/Dual_Orb_Item_Shops_Topaz_Dust_And_World2_Items.ips) | Adds Topaz Dust (MP) to all shops + Revive & W1 items to World 2 shops |
 | **Battle EXP** | [`Dual_Orb_EXP_Divisor_1_Full100.ips`](patches/Dual_Orb_EXP_Divisor_1_Full100.ips) | Every surviving party member receives 100% of battle EXP |
@@ -78,15 +79,17 @@ In the original 1993 release, the party walks at 1 pixel/frame with no run mecha
 
 | Patch File | Behavior | ROM Offsets | Recommendation |
 | :--- | :--- | :--- | :--- |
-| [`Dual_Orb_Walk_Speed_Hold_R.ips`](patches/Dual_Orb_Walk_Speed_Hold_R.ips) | **Hold R to Dash (2x).** Release R to walk at normal 1x. | `0x084B46`, `0x084C14`, `0x00FD00` | **Recommended** (Zero cutscene softlock risk) |
+| [`Dual_Orb_Walk_Speed_Hold_R.ips`](patches/Dual_Orb_Walk_Speed_Hold_R.ips) | **Hold R to Dash (2x).** Release R to walk at normal 1x. | `0x084B46`, `0x084C14`, `0x00FD00` | **Recommended** (Simply release R in cutscenes) |
 | [`Dual_Orb_Walk_Speed_Toggle_R_Latch.ips`](patches/Dual_Orb_Walk_Speed_Toggle_R_Latch.ips) | **Toggle R + D-Pad (2x / 1x).** Press **R + any D-Pad direction** to turn ON or OFF. Includes latch guard. | `0x084B46`, `0x084C14`, `0x00FD00` | See warning below |
-| [`Dual_Orb_Walk_Speed_Restore_Vanilla.ips`](patches/Dual_Orb_Walk_Speed_Restore_Vanilla.ips) | **Restore Vanilla.** Reverts to original 1x walking routines. | `0x084B46`, `0x084C14` | Factory 1993 reset |
+| [`Dual_Orb_Walk_Speed_Restore_Vanilla.ips`](patches/Dual_Orb_Walk_Speed_Restore_Vanilla.ips) | **Restore Vanilla (Hold R & Toggle R).** Reverts both dash patches to original 1x walking routines and clears `$01:FD00` (`$FF` padding). | `0x084B46`, `0x084C14`, `0x00FD00` | Factory 1993 reset |
 
 > [!WARNING]
-> **Story Cutscene Warning (Toggle Patch):**
-> **Turn off 2x walk before entering the Sealed Shrine before enter the undergroud world or else the game Will hang in the Resisty Home escape.**
+> **Story Cutscene Warning (Both Walk Speed Patches):**
+> **Keep 2x walk OFF during the Resisty Home / Sealed Shrine escape leading into the Underground World, or the cutscene can hang.**
 >
-> *Why this happens:* During the Resisty Home / Sealed Shrine escape sequence leading into the Underground World, **Teresa** leads the party in a single-file caterpillar formation toward the cutscene trigger point. Because she moves on fixed 1x rails, if 2x walk is active, Ralph moves ahead and overtakes Teresa, so the trigger point never fires and the game softlocks. With the Toggle patch, press **R + any D-Pad direction** to switch back to 1x before entering. With **`Dual_Orb_Walk_Speed_Hold_R.ips`**, this never occurs because R is naturally released during cutscenes.
+> *Why this happens:* During that escape sequence, **Teresa** leads the party in a single-file caterpillar formation toward the cutscene trigger point on fixed 1x rails. If 2x walk is active, Ralph moves ahead and overtakes Teresa so the trigger point never fires.
+> - **Hold R (`Dual_Orb_Walk_Speed_Hold_R.ips`):** Simply **do not hold R** during this cutscene (holding R will still dash at 2x if you keep it pressed).
+> - **Toggle R (`Dual_Orb_Walk_Speed_Toggle_R_Latch.ips`):** Turn 2x OFF before entering — or press **R** during the sequence itself to toggle back to 1x (the game still reads R during the cutscene, so you can toggle ON/OFF at any time).
 
 <details>
 <summary><strong>View Asar Source Code — Hold R to Run (<code>Dual_Orb_Walk_Speed_Hold_R.asm</code>)</strong></summary>
@@ -251,11 +254,13 @@ The vanilla 1993 engine rolls for random battles starting from step 1 with a har
 
 | Patch File | Behavior | ROM Offsets |
 | :--- | :--- | :--- |
-| [`Dual_Orb_Encounters_Toggle_L_Button.ips`](patches/Dual_Orb_Encounters_Toggle_L_Button.ips) | **Real-Time L-Button Toggle.** Press **L** anytime to switch between 20-step grace period and Vanilla rate (with confirmation SFX). | `0x0000E1`, `0x1082EA`, `0x00FB00`, `0x00FC00` |
+| [`Dual_Orb_Encounters_Toggle_L_Button.ips`](patches/Dual_Orb_Encounters_Toggle_L_Button.ips) | **Real-Time L-Button Toggle (20-Step Grace ↔ Vanilla).** Press **L** anytime to switch between 20-step grace period and Vanilla rate (confirmation SFX: `$12` / `$17`). | `0x0000E1`, `0x1082EA`, `0x00FB00`, `0x00FC00` |
+| [`Dual_Orb_Encounters_Toggle_L_NoEncounters_Vs_Vanilla.ips`](patches/Dual_Orb_Encounters_Toggle_L_NoEncounters_Vs_Vanilla.ips) | **Real-Time L-Button Toggle (0% No Encounters ↔ Vanilla).** Starts in Vanilla; press **L** anytime to turn random battles OFF (`0%`, resets step counter `$7E:1CAD`, bosses/story fights unaffected) or back ON (`$12` = OFF, `$17` = Vanilla). | `0x0000E1`, `0x1082EA`, `0x00FB00`, `0x00FC00` |
 | [`Dual_Orb_Encounters_20StepGrace_Balanced.ips`](patches/Dual_Orb_Encounters_20StepGrace_Balanced.ips) | **20-Step Grace Period (Balanced).** 0% battle chance for the first 20 steps with halved escalation thresholds. | `0x1082EA` |
 | [`Dual_Orb_Encounters_30StepGrace_Modern.ips`](patches/Dual_Orb_Encounters_30StepGrace_Modern.ips) | **30-Step Grace Period (Modern).** 0% battle chance for the first 30 steps; smooth progressive scaling afterward. | `0x1082EA` |
 | [`Dual_Orb_Encounters_40StepGrace_Relaxed.ips`](patches/Dual_Orb_Encounters_40StepGrace_Relaxed.ips) | **40-Step Grace Period (Relaxed).** Ideal for dungeon exploration and story pacing. | `0x1082EA` |
-| [`Dual_Orb_Encounters_Restore_Vanilla.ips`](patches/Dual_Orb_Encounters_Restore_Vanilla.ips) | **Restore Vanilla 1993.** Reverts to original step encounter thresholds. | `0x1082EA` |
+| [`Dual_Orb_Encounters_Restore_Vanilla.ips`](patches/Dual_Orb_Encounters_Restore_Vanilla.ips) | **Restore Vanilla (Static 20/30/40-Step Patches).** Reverts original step encounter thresholds at `$21:82EA`. | `0x1082EA` |
+| [`Dual_Orb_Encounters_Toggle_L_Restore_Vanilla.ips`](patches/Dual_Orb_Encounters_Toggle_L_Restore_Vanilla.ips) | **Restore Vanilla (Both Toggle L Patches).** Unhooks `$00:80E1`, restores `$21:82EA`, and clears `$01:FB00` / `$01:FC00` back to `$FF`. | `0x0000E1`, `0x1082EA`, `0x00FB00`, `0x00FC00` |
 
 ---
 
@@ -411,8 +416,9 @@ In vanilla 1993, Inns charge `Base Price × Number of Living Characters` (4x the
 ```text
 dual-orb-qol-patches/
 ├── README.md        # Full English documentation & quick-pick guide
-├── patches/         # 33 ready-to-apply modular .ips patches (100% English filenames)
-├── source_asm/      # 33 matching Asar 65816 .asm source files (1-to-1 with patches/)
+├── README.txt       # Plain-text documentation (Romhacking.net format)
+├── patches/         # 35 ready-to-apply modular .ips patches (100% English filenames)
+├── source_asm/      # 35 matching Asar 65816 .asm source files (1-to-1 with patches/)
 └── docs/            # Complete Level 1–99 character growth tables (.md, .csv, .xlsx)
 ```
 
@@ -421,17 +427,28 @@ dual-orb-qol-patches/
 ## Target ROM Information
 
 - **Game:** *Dual Orb: Seirei Tama Densetsu* (Super Famicom / SNES, I'MAX, 1993)
-- **Mapping:** LoROM, 2 MB (`2,097,152` bytes)
-- **Header:** Headerless / No-Intro (no 512-byte SMC header)
-- **Tested On:** [minhnhattonthat / `dual-orb-seirei-tama-densetsu-en`](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en)
-- **Untested:** Original Japanese ROM (likely compatible) & the other English fan translation (not guaranteed)
+- **Mapping & Header:** LoROM, **Headerless / No-Intro** *(if your file is `1,573,376` bytes, remove the 512-byte copier header first)*
+- **Base Japanese ROM (No-Intro):** `Dual Orb - Seirei Tama Densetsu (Japan).sfc`
+  - **Size:** `1,572,864` bytes (1.5 MB)
+  - **CRC32:** `9D7BD920`
+  - **MD5:** `ba4b6f2c3195df69497f1f32fe697746`
+  - **SHA-1:** `25fe4c1af89a7d09ffefab7d568d15865f153467`
+- **Verified English Translation #1:** [minhnhattonthat / `dual-orb-seirei-tama-densetsu-en` v1.5](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en/releases)
+  - **Patched ROM Size:** `2,097,152` bytes (2 MB expanded)
+  - **Patched ROM CRC32:** `A1B429E9`
+  - **Translation Patch SHA-1:** `9018d5c016ad27b01632dbc5bc6a6c6315fa6873`
+- **Verified English Translation #2:** [gametranslate.us (`DualOrb_EN_v1.0.2.bps`)](https://gametranslate.us/)
+  - **Patched ROM Size:** `2,097,152` bytes (2 MB expanded)
+  - **Patched ROM CRC32:** `9EA0B01A`
+  - **Patched ROM MD5:** `644a430a08df0850f5bd268627cc341c`
+  - **Patched ROM SHA-1:** `684c636f92f7b979c0f69cd8d21ba750f9e1c9d1`
 
 ---
 
 ## How to Apply
 
-1. Start with a clean, headerless `Dual Orb (J)` ROM (`.sfc` / `.smc`).
-2. *(Optional)* Apply **[minhnhattonthat's English fan translation](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en)** first.
+1. Start with a clean, headerless `Dual Orb - Seirei Tama Densetsu (Japan).sfc` No-Intro ROM (`1,572,864` bytes, CRC32 `9D7BD920`).
+2. *(Optional)* Apply your preferred English fan translation first — both **[minhnhattonthat v1.5](https://github.com/minhnhattonthat/dual-orb-seirei-tama-densetsu-en/releases)** (`CRC32 A1B429E9`) and **[gametranslate.us v1.0.2](https://gametranslate.us/)** (`CRC32 9EA0B01A`) are verified compatible.
 3. Download any `.ips` files you want from the [`patches/`](patches/) folder (or grab the complete `.ZIP` from **Releases**).
 4. Apply each `.ips` file using **[Floating IPS (Flips)](https://github.com/Alcaro/Flips)** or **Lunar IPS (LIPS)**.
    - Every patch targets an independent routine, so you can stack multiple `.ips` files in any order.
@@ -457,10 +474,10 @@ None of these patches alter or break the classic 1993 field-magic MP trick:
 
 ## Bonus Reference: Complete Level 1–99 Growth Tables
 
-Full level-by-level character stat progression (Levels 1 to 99) is included in the [`docs/`](docs/) folder:
+Full level-by-level character stat progression (Levels 1 to 99, extracted from Bank `$2A`) is included in the [`docs/`](docs/) folder:
 
-- [`docs/Dual_Orb_Level_1_to_99_Stats.md`](docs/Dual_Orb_Level_1_to_99_Stats.md) — Interactive collapsible GitHub tables for all 4 heroes
-- [`docs/Dual_Orb_Level_1_to_99_Stats.xlsx`](docs/Dual_Orb_Level_1_to_99_Stats.xlsx) — Full 4-tab English Excel workbook
+- [`docs/Dual_Orb_Level_1_to_99_Stats.md`](docs/Dual_Orb_Level_1_to_99_Stats.md) — Interactive collapsible GitHub tables for all 4 heroes + technical ROM source notes
+- [`docs/Dual_Orb_Level_1_to_99_Stats.xlsx`](docs/Dual_Orb_Level_1_to_99_Stats.xlsx) — Full 5-tab English Excel workbook (Ralph, Theo, Liz, Lumies, Sources)
 - Individual searchable `.csv` files inside [`docs/`](docs/)
 
 ---

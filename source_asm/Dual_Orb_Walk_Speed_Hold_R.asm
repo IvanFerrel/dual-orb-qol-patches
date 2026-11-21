@@ -6,7 +6,8 @@
 ;     LDA.l $7FD7C8 : BEQ +6 : TYA : CLC : ADC.w #$0040 : TAY
 ; This patch replaces ONLY the first instruction (4 bytes) with a JSL to a
 ; helper that returns the original flag in A (16-bit), or if zero, the R button
-; state from Joypad 1. Zero softlock risk during Teresa's Underground escape.
+; state from Joypad 1. Simply release R during Teresa's Underground escape
+; cutscene so the party walks at 1x speed (holding R still dashes at 2x).
 ; ==============================================================================
 
 lorom
